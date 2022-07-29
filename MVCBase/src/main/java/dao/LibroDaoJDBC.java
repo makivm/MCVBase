@@ -97,7 +97,7 @@ public class LibroDaoJDBC implements LibroDao {
 		int num=0;
 		
 		try {
-			consulta=con.prepareStatement("insert into libros values(?,?,?,?,?,?,?,?");
+			consulta=con.prepareStatement("insert into libros values(?,?,?,?,?,?,?,?)");
 			
 			consulta.setString(1, l.getIsbn());
 			consulta.setString(2, l.getTitulo());
@@ -112,7 +112,7 @@ public class LibroDaoJDBC implements LibroDao {
 			System.out.println("Libro insertado correctamente");
 			
 		} catch (SQLException e) {
-			System.out.println("Error insertando libro");
+			System.out.println("Error insertando libro"+consulta);
 			e.printStackTrace();
 		} finally {
 			try {
@@ -150,6 +150,7 @@ public class LibroDaoJDBC implements LibroDao {
 			consulta.setFloat(5, l.getPrecio());
 			consulta.setInt(6, l.getCantidad());
 			consulta.setFloat(7, l.getPrecioCD());
+			consulta.setString(8, l.getIsbn());
 			
 			num=consulta.executeUpdate();
 			System.out.println("Libro actualizado correctamente");
